@@ -1,0 +1,889 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SEAL Version="203" Key="ZGPRS3" Target="ZGPRS3_0203_1" Creation="05/05/2017 09:15:32" Build="82174939-0ce6-49d6-90fd-43491b980af8">
+  <SETTINGS BuildTrace="T" BuildDebug="T" BuildOutputTags="T" BuildUnusedTags="F" PublishOptions="0" Width="9600" Height="9600" />
+  <ADMIN>
+    <RTC IsDaylightSavingTimeEnabled="T" IsFormatYYYMMDD="F" IsFormatAMPM="F" SyncInit="T" SyncMode="None">
+      <TIMEZONE Id="W. Europe Standard Time" Offset="4" />
+      <DAYLIGHT IsEnabled="F" IsCalculated="F" SunsetOffset="0" SunriseOffset="0" Latitude="-1" Longitude="-1" />
+    </RTC>
+    <GSM IsEnabled="T" IsCMUXEnabled="T" IsSMSForwardEnabled="F" IsJamDetectEnabled="F" IsDtmfEnabled="F" IsDtmfAckEnabled="F" IsAudioEnabled="T" RingAck="Disabled" SMSAck="Disabled" RingTimeout="0">
+      <SIM IsData="F" ReadICCID="F" IsPINEnabled="F" />
+      <OPERATOR Id="2" CountryId="44" CountryPrefix="+39" CountryTimeZoneId="W. Europe Standard Time" />
+      <CSCA IsEnabled="F" Address="+393359609600" />
+      <CREDIT Request="SMS" PhoneNumber="40916" Message="pre cre sin" />
+      <APN IsEnabled="T" IsAuthEnabled="F" IsSyncEnabled="F" IsLocateEnabled="F" Name="ibox.tim.it" User="" Pass="" />
+      <THRESHOLDS MaxCallCounter="0" MaxSmsCounter="0" MaxDataCounter="0" />
+    </GSM>
+    <NET IsEnabled="T" IsPHYEnabled="T" IsPPPEnabled="T" IsDHCPEnabled="F">
+      <IP ServerAddress="192.168.90.101" SubnetMask="255.255.255.0" GatewayAddress="0.0.0.0" DnsAddress="8.8.8.8" />
+      <AUTH IsEnabled="F" User="" Pass="" />
+      <WEB IsEnabled="F" IsSDEnabled="T" Port="80" />
+      <MODBUS IsServerEnabled="F" ServerPort="502" ServerConnectionTimeout="0" ServerSessionTimeout="0" ServerIdleTimeout="0" IsClientEnabled="F" ClientPort="1024" ClientDelay="0" ClientStartDelay="0" ClientRecvTimeout="0" ClientSendTimeout="240" ClientConnectionTimeout="180" />
+      <FTP IsClientEnabled="F" IsServerEnabled="F" ServerPort="21" />
+      <SMTP IsEnabled="F" />
+      <HTTP IsEnabled="T" />
+      <NTP IsEnabled="T" Server1IpAddress="193.204.114.232" Server2IpAddress="193.204.114.233" />
+      <PING IsEnabled="T" Server1IpAddress="8.8.8.8" Server2IpAddress="8.8.4.4" />
+      <PPP IsEnabled="T" IsAuthEnabled="F" IsAuthPAP="T" IsAuthCHAP="F" IsAddressNotifyOpcEnabled="F" User="" Pass="" />
+    </NET>
+    <CLOUD AccessId="0" DeviceName="" Sender="" OptionMobile="F" OptionRemote="T" IsNamePrefixEnabled="F">
+      <SMTP_REMOTE IsEnabled="F" IsMessageEnabled="F" IsReportEnabled="F" IsSSLEnabled="F" IsAuthEnabled="F" ServerPort="25" ServerName="" ServerUser="" ServerPass="" />
+      <SMTP_MOBILE IsEnabled="F" IsMessageEnabled="F" IsReportEnabled="F" IsSSLEnabled="F" IsAuthEnabled="F" ServerPort="25" ServerName="" ServerUser="" ServerPass="" />
+      <FTP IsEnabled="F" IsUploadEnabled="F" IsDownloadEnabled="F" IsAppendEnabled="F" IsPassiveModeEnabled="F" IsAuthEnabled="F" IsFolderIMEI="F" IsFolderMAC="F" IsFolderRTU="F" UploadPath="" DownloadPath="" RemoteServerPort="21" RemoteServerName="" RemoteServerUser="" RemoteServerPass="" />
+      <TRANSFER MaxSize="1000" Path="" />
+      <HTTP IsEnabled="T" IsCloudBox="T" IsGetEnabled="F" IsPostEnabled="T" IsRndEnabled="T" IsSSLEnabled="F" RemoteServerPort="80" RemotePostPort="80" RemoteGetPort="80" RemoteServerName="test.example.com" RemotePostPath="/sdk/" />
+    </CLOUD>
+    <GROUPS>
+      <GROUP Name="GRP.USR.0" Label="Manager" Lock="T">
+        <DESCRIPTION>Executes System Commands</DESCRIPTION>
+      </GROUP>
+      <GROUP Name="GRP.USR.1" Label="Logs" Lock="T">
+        <DESCRIPTION>Receives Notifications and SMS fowards</DESCRIPTION>
+      </GROUP>
+      <GROUP Name="GRP.USR.2" Label="Alerts" Lock="T">
+        <DESCRIPTION>Receives Default Event/Alarm Notifications</DESCRIPTION>
+      </GROUP>
+    </GROUPS>
+    <PROFILES>
+      <PROFILE Name="PRO.USR.0" Label="Administrator" SuperUser="T">
+        <DESCRIPTION>Super User [All Groups]</DESCRIPTION>
+      </PROFILE>
+      <PROFILE Name="PRO.USR.1" Label="Manager" SuperUser="F">
+        <DESCRIPTION>Executes System Commands (No Notifications)</DESCRIPTION>
+        <ACCEPT Name="GRP.USR.0" />
+      </PROFILE>
+      <PROFILE Name="PRO.USR.2" Label="Log Admin" SuperUser="F">
+        <DESCRIPTION>Receives Log Notifications</DESCRIPTION>
+        <ACCEPT Name="GRP.USR.1" />
+      </PROFILE>
+      <PROFILE Name="PRO.USR.3" Label="Alert Admin" SuperUser="F">
+        <DESCRIPTION>Receives Alert Notifications</DESCRIPTION>
+        <ACCEPT Name="GRP.USR.2" />
+      </PROFILE>
+      <PROFILE Name="PRO.USR.4" Label="Operator" SuperUser="F">
+        <DESCRIPTION>Executes System Commands and Receives Alert Notifications</DESCRIPTION>
+        <ACCEPT Name="GRP.USR.0" />
+        <ACCEPT Name="GRP.USR.2" />
+      </PROFILE>
+    </PROFILES>
+    <USERS>
+      <USER Name="USR.0" Label="Administrator" Profile="PRO.USR.0" Lock="T">
+        <DESCRIPTION>Super User</DESCRIPTION>
+      </USER>
+      <USER Name="USR.1" Label="User1" Profile="PRO.USR.1" Lock="F">
+        <DESCRIPTION>Configuration Manager</DESCRIPTION>
+      </USER>
+      <USER Name="USR.2" Label="User2" Profile="PRO.USR.2" Lock="F">
+        <DESCRIPTION>Notification Administrator</DESCRIPTION>
+      </USER>
+      <USER Name="USR.3" Label="User4" Profile="PRO.USR.3" Lock="F">
+        <DESCRIPTION>Alert Administrator</DESCRIPTION>
+      </USER>
+      <USER Name="USR.4" Label="User3" Profile="PRO.USR.4" Lock="F">
+        <DESCRIPTION>Configuration and Alert Operator</DESCRIPTION>
+      </USER>
+    </USERS>
+  </ADMIN>
+  <APPLICATION>
+    <MSGS Language="DEFAULT">
+      <MSG />
+      <MSG />
+      <MSG />
+      <MSG />
+      <MSG />
+      <MSG />
+      <MSG />
+      <MSG />
+      <MSG />
+      <MSG />
+      <MSG />
+      <MSG />
+      <MSG />
+      <MSG />
+      <MSG />
+      <MSG />
+      <MSG />
+      <MSG />
+      <MSG />
+      <MSG />
+      <MSG />
+      <MSG />
+      <MSG />
+      <MSG />
+      <MSG />
+      <MSG />
+      <MSG />
+      <MSG />
+      <MSG />
+      <MSG />
+      <MSG />
+      <MSG />
+      <MSG />
+      <MSG />
+      <MSG />
+      <MSG />
+      <MSG />
+      <MSG />
+      <MSG />
+      <MSG />
+      <MSG />
+      <MSG />
+      <MSG />
+      <MSG />
+      <MSG />
+      <MSG />
+      <MSG />
+      <MSG />
+      <MSG />
+      <MSG />
+      <MSG />
+      <MSG />
+      <MSG />
+      <MSG />
+      <MSG />
+      <MSG />
+      <MSG />
+      <MSG />
+      <MSG />
+      <MSG />
+      <MSG />
+      <MSG />
+      <MSG />
+      <MSG />
+    </MSGS>
+  </APPLICATION>
+  <POINTS>
+    <VARS>
+      <VAR Name="GSM.DBM" Label="GSM DBM" IsInitialized="F" IsReadOnly="T" IsLogSynced="F" IsLogged="T" DataType="S16" Aggregate="Sample" ValueType="dBm" ValueLabel="DBM" ValueUnit="dBm" ValueUnitDecimalPlaces="0">
+        <DESCRIPTION>Modem GSM Modem GSM Signal Quality dBm</DESCRIPTION>
+      </VAR>
+      <VAR Name="AIN1.VAL" Label="AIN1 VAL" IsInitialized="F" IsReadOnly="T" IsLogSynced="F" IsLogged="T" DataType="S16" Aggregate="Sample" ValueType="Value" ValueLabel="VAL1" ValueUnit="µA" ValueUnitDecimalPlaces="0">
+        <DESCRIPTION>Analog Input 1 Last Sample Value</DESCRIPTION>
+      </VAR>
+      <VAR Name="AIN1.AVG" Label="AIN1 AVG" IsInitialized="F" IsReadOnly="T" IsLogSynced="T" IsLogged="F" DataType="S16" Aggregate="Average" ValueType="Value" ValueLabel="AVG1" ValueUnit="µA" ValueUnitDecimalPlaces="0">
+        <DESCRIPTION>Analog Input 1 Average Value</DESCRIPTION>
+      </VAR>
+      <VAR Name="AIN1.MIN" Label="AIN1 MIN" IsInitialized="F" IsReadOnly="T" IsLogSynced="T" IsLogged="F" DataType="S16" Aggregate="Minimum" ValueType="Value" ValueLabel="MIN1" ValueUnit="µA" ValueUnitDecimalPlaces="0">
+        <DESCRIPTION>Analog Input 1 Minimum Value</DESCRIPTION>
+      </VAR>
+      <VAR Name="AIN1.MAX" Label="AIN1 MAX" IsInitialized="F" IsReadOnly="T" IsLogSynced="T" IsLogged="F" DataType="S16" Aggregate="Maximum" ValueType="Value" ValueLabel="MAX1" ValueUnit="µA" ValueUnitDecimalPlaces="0">
+        <DESCRIPTION>Analog Input 1 Maximum Value</DESCRIPTION>
+      </VAR>
+      <VAR Name="AIN2.VAL" Label="AIN2 VAL" IsInitialized="F" IsReadOnly="T" IsLogSynced="F" IsLogged="T" DataType="S16" Aggregate="Sample" ValueType="Value" ValueLabel="VAL2" ValueUnit="µA" ValueUnitDecimalPlaces="0">
+        <DESCRIPTION>Analog Input 2 Last Sample Value</DESCRIPTION>
+      </VAR>
+      <VAR Name="AIN2.AVG" Label="AIN2 AVG" IsInitialized="F" IsReadOnly="T" IsLogSynced="T" IsLogged="F" DataType="S16" Aggregate="Average" ValueType="Value" ValueLabel="AVG2" ValueUnit="µA" ValueUnitDecimalPlaces="0">
+        <DESCRIPTION>Analog Input 2 Average Value</DESCRIPTION>
+      </VAR>
+      <VAR Name="AIN2.MIN" Label="AIN2 MIN" IsInitialized="F" IsReadOnly="T" IsLogSynced="T" IsLogged="F" DataType="S16" Aggregate="Minimum" ValueType="Value" ValueLabel="MIN2" ValueUnit="µA" ValueUnitDecimalPlaces="0">
+        <DESCRIPTION>Analog Input 2 Minimum Value</DESCRIPTION>
+      </VAR>
+      <VAR Name="AIN2.MAX" Label="AIN2 MAX" IsInitialized="F" IsReadOnly="T" IsLogSynced="T" IsLogged="F" DataType="S16" Aggregate="Maximum" ValueType="Value" ValueLabel="MAX2" ValueUnit="µA" ValueUnitDecimalPlaces="0">
+        <DESCRIPTION>Analog Input 2 Maximum Value</DESCRIPTION>
+      </VAR>
+      <VAR Name="DIN1.STS" Label="DIN1 DIN" IsInitialized="F" IsReadOnly="T" IsLogSynced="F" IsLogged="T" DataType="BOOL" Aggregate="Sample" ValueType="Flag" ValueLabel="DIN1" ValueUnit="State" ValueUnitDecimalPlaces="0">
+        <DESCRIPTION>Digital Input 1 State</DESCRIPTION>
+      </VAR>
+      <VAR Name="DIN1.TOT" Label="DIN1 TOT" IsInitialized="F" IsReadOnly="T" IsLogSynced="T" IsLogged="F" DataType="S32" Aggregate="Total" ValueType="Counter" ValueLabel="TOT1" ValueUnit="Pulses" ValueUnitDecimalPlaces="0">
+        <DESCRIPTION>Digital Input 1 Total Counter</DESCRIPTION>
+      </VAR>
+      <VAR Name="DIN1.CNT" Label="DIN1 CNT" IsInitialized="F" IsReadOnly="T" IsLogSynced="T" IsLogged="F" DataType="S32" Aggregate="Partial" ValueType="Counter" ValueLabel="CNT1" ValueUnit="Pulses" ValueUnitDecimalPlaces="0">
+        <DESCRIPTION>Digital Input 1 Partial Counter</DESCRIPTION>
+      </VAR>
+      <VAR Name="DIN1.DELTA" Label="DIN1 DELTA" IsInitialized="F" IsReadOnly="T" IsLogSynced="T" IsLogged="F" DataType="S32" Aggregate="Delta" ValueType="Counter" ValueLabel="DELTA1" ValueUnit="Pulses" ValueUnitDecimalPlaces="0">
+        <DESCRIPTION>Digital Input 1 Delta Counter</DESCRIPTION>
+      </VAR>
+      <VAR Name="DIN1.WRK" Label="DIN1 WRK" IsInitialized="F" IsReadOnly="T" IsLogSynced="T" IsLogged="F" DataType="S32" Aggregate="Span" ValueType="Epoch" ValueLabel="WRK1" ValueUnit="Seconds" ValueUnitDecimalPlaces="0">
+        <DESCRIPTION>Digital Input 1 Work Time Counter</DESCRIPTION>
+      </VAR>
+      <VAR Name="DIN2.STS" Label="DIN2 DIN" IsInitialized="F" IsReadOnly="T" IsLogSynced="F" IsLogged="T" DataType="BOOL" Aggregate="Sample" ValueType="Flag" ValueLabel="DIN2" ValueUnit="State" ValueUnitDecimalPlaces="0">
+        <DESCRIPTION>Digital Input 2 State</DESCRIPTION>
+      </VAR>
+      <VAR Name="DIN2.TOT" Label="DIN2 TOT" IsInitialized="F" IsReadOnly="T" IsLogSynced="T" IsLogged="F" DataType="S32" Aggregate="Total" ValueType="Counter" ValueLabel="TOT2" ValueUnit="Pulses" ValueUnitDecimalPlaces="0">
+        <DESCRIPTION>Digital Input 2 Total Counter</DESCRIPTION>
+      </VAR>
+      <VAR Name="DIN2.CNT" Label="DIN2 CNT" IsInitialized="F" IsReadOnly="T" IsLogSynced="T" IsLogged="F" DataType="S32" Aggregate="Partial" ValueType="Counter" ValueLabel="CNT2" ValueUnit="Pulses" ValueUnitDecimalPlaces="0">
+        <DESCRIPTION>Digital Input 2 Partial Counter</DESCRIPTION>
+      </VAR>
+      <VAR Name="DIN2.DELTA" Label="DIN2 DELTA" IsInitialized="F" IsReadOnly="T" IsLogSynced="T" IsLogged="F" DataType="S32" Aggregate="Delta" ValueType="Counter" ValueLabel="DELTA2" ValueUnit="Pulses" ValueUnitDecimalPlaces="0">
+        <DESCRIPTION>Digital Input 2 Delta Counter</DESCRIPTION>
+      </VAR>
+      <VAR Name="DIN2.WRK" Label="DIN2 WRK" IsInitialized="F" IsReadOnly="T" IsLogSynced="T" IsLogged="F" DataType="S32" Aggregate="Span" ValueType="Epoch" ValueLabel="WRK2" ValueUnit="Seconds" ValueUnitDecimalPlaces="0">
+        <DESCRIPTION>Digital Input 2 Work Time Counter</DESCRIPTION>
+      </VAR>
+      <VAR Name="DIN3.STS" Label="DIN3 DIN" IsInitialized="F" IsReadOnly="T" IsLogSynced="F" IsLogged="T" DataType="BOOL" Aggregate="Sample" ValueType="Flag" ValueLabel="DIN3" ValueUnit="State" ValueUnitDecimalPlaces="0">
+        <DESCRIPTION>Digital Input 3 State</DESCRIPTION>
+      </VAR>
+      <VAR Name="DIN3.TOT" Label="DIN3 TOT" IsInitialized="F" IsReadOnly="T" IsLogSynced="T" IsLogged="F" DataType="S32" Aggregate="Total" ValueType="Counter" ValueLabel="TOT3" ValueUnit="Pulses" ValueUnitDecimalPlaces="0">
+        <DESCRIPTION>Digital Input 3 Total Counter</DESCRIPTION>
+      </VAR>
+      <VAR Name="DIN3.CNT" Label="DIN3 CNT" IsInitialized="F" IsReadOnly="T" IsLogSynced="T" IsLogged="F" DataType="S32" Aggregate="Partial" ValueType="Counter" ValueLabel="CNT3" ValueUnit="Pulses" ValueUnitDecimalPlaces="0">
+        <DESCRIPTION>Digital Input 3 Partial Counter</DESCRIPTION>
+      </VAR>
+      <VAR Name="DIN3.DELTA" Label="DIN3 DELTA" IsInitialized="F" IsReadOnly="T" IsLogSynced="T" IsLogged="F" DataType="S32" Aggregate="Delta" ValueType="Counter" ValueLabel="DELTA3" ValueUnit="Pulses" ValueUnitDecimalPlaces="0">
+        <DESCRIPTION>Digital Input 3 Delta Counter</DESCRIPTION>
+      </VAR>
+      <VAR Name="DIN3.WRK" Label="DIN3 WRK" IsInitialized="F" IsReadOnly="T" IsLogSynced="T" IsLogged="F" DataType="S32" Aggregate="Span" ValueType="Epoch" ValueLabel="WRK3" ValueUnit="Seconds" ValueUnitDecimalPlaces="0">
+        <DESCRIPTION>Digital Input 3 Work Time Counter</DESCRIPTION>
+      </VAR>
+      <VAR Name="DIN4.STS" Label="DIN4 DIN" IsInitialized="F" IsReadOnly="T" IsLogSynced="F" IsLogged="T" DataType="BOOL" Aggregate="Sample" ValueType="Flag" ValueLabel="DIN4" ValueUnit="State" ValueUnitDecimalPlaces="0">
+        <DESCRIPTION>Digital Input 4 State</DESCRIPTION>
+      </VAR>
+      <VAR Name="DIN4.TOT" Label="DIN4 TOT" IsInitialized="F" IsReadOnly="T" IsLogSynced="T" IsLogged="F" DataType="S32" Aggregate="Total" ValueType="Counter" ValueLabel="TOT4" ValueUnit="Pulses" ValueUnitDecimalPlaces="0">
+        <DESCRIPTION>Digital Input 4 Total Counter</DESCRIPTION>
+      </VAR>
+      <VAR Name="DIN4.CNT" Label="DIN4 CNT" IsInitialized="F" IsReadOnly="T" IsLogSynced="T" IsLogged="F" DataType="S32" Aggregate="Partial" ValueType="Counter" ValueLabel="CNT4" ValueUnit="Pulses" ValueUnitDecimalPlaces="0">
+        <DESCRIPTION>Digital Input 4 Partial Counter</DESCRIPTION>
+      </VAR>
+      <VAR Name="DIN4.DELTA" Label="DIN4 DELTA" IsInitialized="F" IsReadOnly="T" IsLogSynced="T" IsLogged="F" DataType="S32" Aggregate="Delta" ValueType="Counter" ValueLabel="DELTA4" ValueUnit="Pulses" ValueUnitDecimalPlaces="0">
+        <DESCRIPTION>Digital Input 4 Delta Counter</DESCRIPTION>
+      </VAR>
+      <VAR Name="DIN4.WRK" Label="DIN4 WRK" IsInitialized="F" IsReadOnly="T" IsLogSynced="T" IsLogged="F" DataType="S32" Aggregate="Span" ValueType="Epoch" ValueLabel="WRK4" ValueUnit="Seconds" ValueUnitDecimalPlaces="0">
+        <DESCRIPTION>Digital Input 4 Work Time Counter</DESCRIPTION>
+      </VAR>
+      <VAR Name="DOUT1.STS" Label="DOUT1 DOUT" IsInitialized="F" IsReadOnly="T" IsLogSynced="F" IsLogged="T" DataType="BOOL" Aggregate="Sample" ValueType="Flag" ValueLabel="DOUT1" ValueUnit="State" ValueUnitDecimalPlaces="0">
+        <DESCRIPTION>Digital Output 1 State</DESCRIPTION>
+      </VAR>
+      <VAR Name="DOUT2.STS" Label="DOUT2 DOUT" IsInitialized="F" IsReadOnly="T" IsLogSynced="F" IsLogged="T" DataType="BOOL" Aggregate="Sample" ValueType="Flag" ValueLabel="DOUT2" ValueUnit="State" ValueUnitDecimalPlaces="0">
+        <DESCRIPTION>Digital Output 2 State</DESCRIPTION>
+      </VAR>
+      <VAR Name="SYS.POW" Label="SYS POW" IsInitialized="F" IsReadOnly="T" IsLogSynced="F" IsLogged="T" DataType="BOOL" Aggregate="Sample" ValueType="Flag" ValueLabel="POW" ValueUnit="State" ValueUnitDecimalPlaces="0">
+        <DESCRIPTION>System Power State</DESCRIPTION>
+      </VAR>
+      <VAR Name="SYS.VBAT" Label="SYS VBAT" IsInitialized="F" IsReadOnly="T" IsLogSynced="F" IsLogged="T" DataType="BOOL" Aggregate="Sample" ValueType="Flag" ValueLabel="VBAT" ValueUnit="State" ValueUnitDecimalPlaces="0">
+        <DESCRIPTION>System Battery Power State</DESCRIPTION>
+      </VAR>
+    </VARS>
+  </POINTS>
+  <MASTERMODBUS RtuNoAnswerRetries="50" TcpNoAnswerRetries="5">
+    <FILTERS>
+      <FLT Name="FLT1" Label="UNUSED 00" Param1="0" Param2="0">
+        <DESCRIPTION>Unused Filter 00</DESCRIPTION>
+      </FLT>
+      <FLT Name="FLT2" Label="UNUSED 01" Param1="0" Param2="0">
+        <DESCRIPTION>Unused Filter 01</DESCRIPTION>
+      </FLT>
+      <FLT Name="FLT3" Label="UNUSED 02" Param1="0" Param2="0">
+        <DESCRIPTION>Unused Filter 02</DESCRIPTION>
+      </FLT>
+      <FLT Name="FLT4" Label="UNUSED 03" Param1="0" Param2="0">
+        <DESCRIPTION>Unused Filter 03</DESCRIPTION>
+      </FLT>
+      <FLT Name="FLT5" Label="UNUSED 04" Param1="0" Param2="0">
+        <DESCRIPTION>Unused Filter 04</DESCRIPTION>
+      </FLT>
+      <FLT Name="FLT6" Label="UNUSED 05" Param1="0" Param2="0">
+        <DESCRIPTION>Unused Filter 05</DESCRIPTION>
+      </FLT>
+      <FLT Name="FLT7" Label="UNUSED 06" Param1="0" Param2="0">
+        <DESCRIPTION>Unused Filter 06</DESCRIPTION>
+      </FLT>
+      <FLT Name="FLT8" Label="UNUSED 07" Param1="0" Param2="0">
+        <DESCRIPTION>Unused Filter 07</DESCRIPTION>
+      </FLT>
+      <FLT Name="FLT9" Label="UNUSED 08" Param1="0" Param2="0">
+        <DESCRIPTION>Unused Filter 08</DESCRIPTION>
+      </FLT>
+      <FLT Name="FLT10" Label="UNUSED 09" Param1="0" Param2="0">
+        <DESCRIPTION>Unused Filter 09</DESCRIPTION>
+      </FLT>
+      <FLT Name="FLT11" Label="UNUSED 10" Param1="0" Param2="0">
+        <DESCRIPTION>Unused Filter 10</DESCRIPTION>
+      </FLT>
+      <FLT Name="FLT12" Label="UNUSED 11" Param1="0" Param2="0">
+        <DESCRIPTION>Unused Filter 11</DESCRIPTION>
+      </FLT>
+      <FLT Name="FLT13" Label="UNUSED 12" Param1="0" Param2="0">
+        <DESCRIPTION>Unused Filter 12</DESCRIPTION>
+      </FLT>
+      <FLT Name="FLT14" Label="UNUSED 13" Param1="0" Param2="0">
+        <DESCRIPTION>Unused Filter 13</DESCRIPTION>
+      </FLT>
+      <FLT Name="FLT15" Label="UNUSED 14" Param1="0" Param2="0">
+        <DESCRIPTION>Unused Filter 14</DESCRIPTION>
+      </FLT>
+      <FLT Name="FLT16" Label="UNUSED 15" Param1="0" Param2="0">
+        <DESCRIPTION>Unused Filter 15</DESCRIPTION>
+      </FLT>
+    </FILTERS>
+    <CHANNELS>
+      <CHANNEL Name="CHN.COM.0" Label="PRT1 (BUS IDC10)" BusId="0" Enabled="F" BusInterface="RS485" BusProtocol="ModbusRtu" BaudRate="38400" Parity="NONE" StopBits="1" Timeout="10" Delay="1" SlaveEnabled="F" SlaveUid="-1" BridgeEnabled="F" BridgeUidOffset="0">
+        <DESCRIPTION>Modbus RS485 IDC10 Port #1</DESCRIPTION>
+        <HOSTS />
+      </CHANNEL>
+      <CHANNEL Name="CHN.COM.1" Label="PRT2 (SCREW-TERMINAL)" BusId="1" Enabled="F" BusInterface="RS485" BusProtocol="ModbusRtu" BaudRate="38400" Parity="NONE" StopBits="1" Timeout="10" Delay="1" SlaveEnabled="F" SlaveUid="-1" BridgeEnabled="F" BridgeUidOffset="0">
+        <DESCRIPTION>Modbus RS485/RS232 EXT Port #2</DESCRIPTION>
+        <HOSTS />
+      </CHANNEL>
+    </CHANNELS>
+    <VARS />
+  </MASTERMODBUS>
+  <SHELF>
+    <ITEMS>
+      <ITEM Name="COM" Label="VAR">
+        <PARAMS>
+          <PARAM Name="COMMAND.FLGS.0" Value="NULL" />
+          <PARAM Name="COMMAND.ALIAS.0" Value="NULL" />
+          <PARAM Name="COMMAND.FLGS.1" Value="NULL" />
+          <PARAM Name="COMMAND.ALIAS.1" Value="NULL" />
+        </PARAMS>
+      </ITEM>
+      <ITEM Name="AIN1" Label="AIN1">
+        <PARAMS>
+          <PARAM Name="INFO" Value="NULL" />
+          <PARAM Name="AIN.FLG.V" Value="NULL" />
+          <PARAM Name="AIN.FLG.FILTER" Value="NULL" />
+          <PARAM Name="AIN.FLG.FILTER.0" Value="NULL" />
+          <PARAM Name="AIN.FLG.FILTER.1" Value="NULL" />
+          <PARAM Name="AIN.FLG.LOG.VAL" Value="T" />
+          <PARAM Name="AIN.FLG.LOG.AVG" Value="F" />
+          <PARAM Name="AIN.FLG.LOG.MIN" Value="F" />
+          <PARAM Name="AIN.FLG.LOG.MAX" Value="F" />
+          <PARAM Name="AIN.FORMAT.ENABLE" Value="NULL" />
+          <PARAM Name="AIN.FORMAT.DIGITS" Value="NULL" />
+          <PARAM Name="AIN.CONDITION" Value="NULL" />
+          <PARAM Name="AIN.ALARM.ON.DELAY" Value="NULL" />
+          <PARAM Name="AIN.ALARM.OFF.DELAY" Value="NULL" />
+          <PARAM Name="AIN.SET.P1.MEAS" Value="NULL" />
+          <PARAM Name="AIN.SET.P1.VALUE" Value="NULL" />
+          <PARAM Name="AIN.SET.P2.MEAS" Value="NULL" />
+          <PARAM Name="AIN.SET.P2.VALUE" Value="NULL" />
+          <PARAM Name="AIN.VALUE.MAX" Value="NULL" />
+          <PARAM Name="AIN.VALUE.HIGH" Value="NULL" />
+          <PARAM Name="AIN.VALUE.LOW" Value="NULL" />
+          <PARAM Name="AIN.VALUE.MIN" Value="NULL" />
+          <PARAM Name="AIN.VALUE.DELTA" Value="NULL" />
+        </PARAMS>
+      </ITEM>
+      <ITEM Name="AIN2" Label="AIN2">
+        <PARAMS>
+          <PARAM Name="INFO" Value="NULL" />
+          <PARAM Name="AIN.FLG.V" Value="NULL" />
+          <PARAM Name="AIN.FLG.FILTER" Value="NULL" />
+          <PARAM Name="AIN.FLG.FILTER.0" Value="NULL" />
+          <PARAM Name="AIN.FLG.FILTER.1" Value="NULL" />
+          <PARAM Name="AIN.FLG.LOG.VAL" Value="T" />
+          <PARAM Name="AIN.FLG.LOG.AVG" Value="F" />
+          <PARAM Name="AIN.FLG.LOG.MIN" Value="F" />
+          <PARAM Name="AIN.FLG.LOG.MAX" Value="F" />
+          <PARAM Name="AIN.FORMAT.ENABLE" Value="NULL" />
+          <PARAM Name="AIN.FORMAT.DIGITS" Value="NULL" />
+          <PARAM Name="AIN.CONDITION" Value="NULL" />
+          <PARAM Name="AIN.ALARM.ON.DELAY" Value="NULL" />
+          <PARAM Name="AIN.ALARM.OFF.DELAY" Value="NULL" />
+          <PARAM Name="AIN.SET.P1.MEAS" Value="NULL" />
+          <PARAM Name="AIN.SET.P1.VALUE" Value="NULL" />
+          <PARAM Name="AIN.SET.P2.MEAS" Value="NULL" />
+          <PARAM Name="AIN.SET.P2.VALUE" Value="NULL" />
+          <PARAM Name="AIN.VALUE.MAX" Value="NULL" />
+          <PARAM Name="AIN.VALUE.HIGH" Value="NULL" />
+          <PARAM Name="AIN.VALUE.LOW" Value="NULL" />
+          <PARAM Name="AIN.VALUE.MIN" Value="NULL" />
+          <PARAM Name="AIN.VALUE.DELTA" Value="NULL" />
+        </PARAMS>
+      </ITEM>
+      <ITEM Name="DIN1" Label="DIN1">
+        <PARAMS>
+          <PARAM Name="INFO" Value="NULL" />
+          <PARAM Name="DIN.FLG.EDGE" Value="NULL" />
+          <PARAM Name="DIN.FLG.TOUT" Value="NULL" />
+          <PARAM Name="DIN.FLG.DELTA" Value="NULL" />
+          <PARAM Name="DIN.FLG.DELTA.OVER" Value="NULL" />
+          <PARAM Name="DIN.FLG.LOG.WORK" Value="F" />
+          <PARAM Name="DIN.FLG.LOG.TOT" Value="F" />
+          <PARAM Name="DIN.FLG.LOG.CNT" Value="F" />
+          <PARAM Name="DIN.FLG.LOG.DELTA" Value="F" />
+          <PARAM Name="DIN.FORMAT.ENABLE" Value="NULL" />
+          <PARAM Name="DIN.FORMAT.DIGITS" Value="NULL" />
+          <PARAM Name="DIN.CONDITION" Value="NULL" />
+          <PARAM Name="DIN.CNT.CONDITION" Value="NULL" />
+          <PARAM Name="DIN.WRK.CONDITION" Value="NULL" />
+          <PARAM Name="DIN.DELTA.CONDITION" Value="NULL" />
+          <PARAM Name="DIN.DELTA.ENABLE" Value="NULL" />
+          <PARAM Name="DIN.WORK.ENABLE" Value="NULL" />
+          <PARAM Name="DIN.ALARM.ON.DELAY" Value="NULL" />
+          <PARAM Name="DIN.ALARM.OFF.DELAY" Value="NULL" />
+          <PARAM Name="DIN.WORK.TOUT" Value="NULL" />
+          <PARAM Name="DIN.VALUE.M" Value="NULL" />
+          <PARAM Name="DIN.VALUE.Q" Value="NULL" />
+          <PARAM Name="DIN.THRESHOLD.0" Value="NULL" />
+          <PARAM Name="DIN.THRESHOLD.1" Value="NULL" />
+          <PARAM Name="DIN.DELTA.THRESHOLD" Value="NULL" />
+          <PARAM Name="COMMAND.FLGS.0" Value="-1" />
+          <PARAM Name="COMMAND.ALIAS.0" Value="NULL" />
+          <PARAM Name="COMMAND.FLGS.1" Value="-1" />
+          <PARAM Name="COMMAND.ALIAS.1" Value="NULL" />
+          <PARAM Name="COMMAND.FLGS.2" Value="-1" />
+          <PARAM Name="COMMAND.ALIAS.2" Value="NULL" />
+        </PARAMS>
+      </ITEM>
+      <ITEM Name="DIN2" Label="DIN2">
+        <PARAMS>
+          <PARAM Name="INFO" Value="NULL" />
+          <PARAM Name="DIN.FLG.EDGE" Value="NULL" />
+          <PARAM Name="DIN.FLG.TOUT" Value="NULL" />
+          <PARAM Name="DIN.FLG.DELTA" Value="NULL" />
+          <PARAM Name="DIN.FLG.DELTA.OVER" Value="NULL" />
+          <PARAM Name="DIN.FLG.LOG.WORK" Value="F" />
+          <PARAM Name="DIN.FLG.LOG.TOT" Value="F" />
+          <PARAM Name="DIN.FLG.LOG.CNT" Value="F" />
+          <PARAM Name="DIN.FLG.LOG.DELTA" Value="F" />
+          <PARAM Name="DIN.FORMAT.ENABLE" Value="NULL" />
+          <PARAM Name="DIN.FORMAT.DIGITS" Value="NULL" />
+          <PARAM Name="DIN.CONDITION" Value="NULL" />
+          <PARAM Name="DIN.CNT.CONDITION" Value="NULL" />
+          <PARAM Name="DIN.WRK.CONDITION" Value="NULL" />
+          <PARAM Name="DIN.DELTA.CONDITION" Value="NULL" />
+          <PARAM Name="DIN.DELTA.ENABLE" Value="NULL" />
+          <PARAM Name="DIN.WORK.ENABLE" Value="NULL" />
+          <PARAM Name="DIN.ALARM.ON.DELAY" Value="NULL" />
+          <PARAM Name="DIN.ALARM.OFF.DELAY" Value="NULL" />
+          <PARAM Name="DIN.WORK.TOUT" Value="NULL" />
+          <PARAM Name="DIN.VALUE.M" Value="NULL" />
+          <PARAM Name="DIN.VALUE.Q" Value="NULL" />
+          <PARAM Name="DIN.THRESHOLD.0" Value="NULL" />
+          <PARAM Name="DIN.THRESHOLD.1" Value="NULL" />
+          <PARAM Name="DIN.DELTA.THRESHOLD" Value="NULL" />
+          <PARAM Name="COMMAND.FLGS.0" Value="-1" />
+          <PARAM Name="COMMAND.ALIAS.0" Value="NULL" />
+          <PARAM Name="COMMAND.FLGS.1" Value="-1" />
+          <PARAM Name="COMMAND.ALIAS.1" Value="NULL" />
+          <PARAM Name="COMMAND.FLGS.2" Value="-1" />
+          <PARAM Name="COMMAND.ALIAS.2" Value="NULL" />
+        </PARAMS>
+      </ITEM>
+      <ITEM Name="DIN3" Label="DIN3">
+        <PARAMS>
+          <PARAM Name="INFO" Value="NULL" />
+          <PARAM Name="DIN.FLG.EDGE" Value="NULL" />
+          <PARAM Name="DIN.FLG.TOUT" Value="NULL" />
+          <PARAM Name="DIN.FLG.DELTA" Value="NULL" />
+          <PARAM Name="DIN.FLG.DELTA.OVER" Value="NULL" />
+          <PARAM Name="DIN.FLG.LOG.WORK" Value="F" />
+          <PARAM Name="DIN.FLG.LOG.TOT" Value="F" />
+          <PARAM Name="DIN.FLG.LOG.CNT" Value="F" />
+          <PARAM Name="DIN.FLG.LOG.DELTA" Value="F" />
+          <PARAM Name="DIN.FORMAT.ENABLE" Value="NULL" />
+          <PARAM Name="DIN.FORMAT.DIGITS" Value="NULL" />
+          <PARAM Name="DIN.CONDITION" Value="NULL" />
+          <PARAM Name="DIN.CNT.CONDITION" Value="NULL" />
+          <PARAM Name="DIN.WRK.CONDITION" Value="NULL" />
+          <PARAM Name="DIN.DELTA.CONDITION" Value="NULL" />
+          <PARAM Name="DIN.DELTA.ENABLE" Value="NULL" />
+          <PARAM Name="DIN.WORK.ENABLE" Value="NULL" />
+          <PARAM Name="DIN.ALARM.ON.DELAY" Value="NULL" />
+          <PARAM Name="DIN.ALARM.OFF.DELAY" Value="NULL" />
+          <PARAM Name="DIN.WORK.TOUT" Value="NULL" />
+          <PARAM Name="DIN.VALUE.M" Value="NULL" />
+          <PARAM Name="DIN.VALUE.Q" Value="NULL" />
+          <PARAM Name="DIN.THRESHOLD.0" Value="NULL" />
+          <PARAM Name="DIN.THRESHOLD.1" Value="NULL" />
+          <PARAM Name="DIN.DELTA.THRESHOLD" Value="NULL" />
+          <PARAM Name="COMMAND.FLGS.0" Value="-1" />
+          <PARAM Name="COMMAND.ALIAS.0" Value="NULL" />
+          <PARAM Name="COMMAND.FLGS.1" Value="-1" />
+          <PARAM Name="COMMAND.ALIAS.1" Value="NULL" />
+          <PARAM Name="COMMAND.FLGS.2" Value="-1" />
+          <PARAM Name="COMMAND.ALIAS.2" Value="NULL" />
+        </PARAMS>
+      </ITEM>
+      <ITEM Name="DIN4" Label="DIN4">
+        <PARAMS>
+          <PARAM Name="INFO" Value="NULL" />
+          <PARAM Name="DIN.FLG.EDGE" Value="NULL" />
+          <PARAM Name="DIN.FLG.TOUT" Value="NULL" />
+          <PARAM Name="DIN.FLG.DELTA" Value="NULL" />
+          <PARAM Name="DIN.FLG.DELTA.OVER" Value="NULL" />
+          <PARAM Name="DIN.FLG.LOG.WORK" Value="F" />
+          <PARAM Name="DIN.FLG.LOG.TOT" Value="F" />
+          <PARAM Name="DIN.FLG.LOG.CNT" Value="F" />
+          <PARAM Name="DIN.FLG.LOG.DELTA" Value="F" />
+          <PARAM Name="DIN.FORMAT.ENABLE" Value="NULL" />
+          <PARAM Name="DIN.FORMAT.DIGITS" Value="NULL" />
+          <PARAM Name="DIN.CONDITION" Value="NULL" />
+          <PARAM Name="DIN.CNT.CONDITION" Value="NULL" />
+          <PARAM Name="DIN.WRK.CONDITION" Value="NULL" />
+          <PARAM Name="DIN.DELTA.CONDITION" Value="NULL" />
+          <PARAM Name="DIN.DELTA.ENABLE" Value="NULL" />
+          <PARAM Name="DIN.WORK.ENABLE" Value="NULL" />
+          <PARAM Name="DIN.ALARM.ON.DELAY" Value="NULL" />
+          <PARAM Name="DIN.ALARM.OFF.DELAY" Value="NULL" />
+          <PARAM Name="DIN.WORK.TOUT" Value="NULL" />
+          <PARAM Name="DIN.VALUE.M" Value="NULL" />
+          <PARAM Name="DIN.VALUE.Q" Value="NULL" />
+          <PARAM Name="DIN.THRESHOLD.0" Value="NULL" />
+          <PARAM Name="DIN.THRESHOLD.1" Value="NULL" />
+          <PARAM Name="DIN.DELTA.THRESHOLD" Value="NULL" />
+          <PARAM Name="COMMAND.FLGS.0" Value="-1" />
+          <PARAM Name="COMMAND.ALIAS.0" Value="NULL" />
+          <PARAM Name="COMMAND.FLGS.1" Value="-1" />
+          <PARAM Name="COMMAND.ALIAS.1" Value="NULL" />
+          <PARAM Name="COMMAND.FLGS.2" Value="-1" />
+          <PARAM Name="COMMAND.ALIAS.2" Value="NULL" />
+        </PARAMS>
+      </ITEM>
+      <ITEM Name="DOUT1" Label="DOUT1">
+        <PARAMS>
+          <PARAM Name="INFO" Value="NULL" />
+          <PARAM Name="DOUT.FLG.CLOSE" Value="NULL" />
+          <PARAM Name="DOUT.FLG.NC" Value="NULL" />
+          <PARAM Name="DOUT.FLG.TOUT" Value="NULL" />
+          <PARAM Name="DOUT.FLG.REC" Value="NULL" />
+          <PARAM Name="DOUT.FLG.PULSE.LOCK" Value="NULL" />
+          <PARAM Name="DOUT.FLG.LOG.WORK" Value="NULL" />
+          <PARAM Name="DOUT.FLG.LOG.ENABLE" Value="NULL" />
+          <PARAM Name="DOUT.PWM.FLG.ON" Value="NULL" />
+          <PARAM Name="DOUT.PWM.FLG.ENABLE" Value="NULL" />
+          <PARAM Name="DOUT.PULSE.TIME" Value="NULL" />
+          <PARAM Name="DOUT.PWM.DUTY" Value="NULL" />
+          <PARAM Name="DOUT.WORK.ENABLE" Value="NULL" />
+          <PARAM Name="DOUT.WORK.TOUT" Value="NULL" />
+          <PARAM Name="COMMAND.FLGS.0" Value="-1" />
+          <PARAM Name="COMMAND.ALIAS.0" Value="NULL" />
+          <PARAM Name="COMMAND.FLGS.1" Value="-1" />
+          <PARAM Name="COMMAND.ALIAS.1" Value="NULL" />
+          <PARAM Name="COMMAND.FLGS.2" Value="-1" />
+          <PARAM Name="COMMAND.ALIAS.2" Value="NULL" />
+          <PARAM Name="COMMAND.FLGS.3" Value="-1" />
+          <PARAM Name="COMMAND.ALIAS.3" Value="NULL" />
+          <PARAM Name="COMMAND.FLGS.4" Value="-1" />
+          <PARAM Name="COMMAND.ALIAS.4" Value="NULL" />
+          <PARAM Name="COMMAND.FLGS.5" Value="-1" />
+          <PARAM Name="COMMAND.ALIAS.5" Value="NULL" />
+        </PARAMS>
+      </ITEM>
+      <ITEM Name="DOUT2" Label="DOUT2">
+        <PARAMS>
+          <PARAM Name="INFO" Value="NULL" />
+          <PARAM Name="DOUT.FLG.CLOSE" Value="NULL" />
+          <PARAM Name="DOUT.FLG.NC" Value="NULL" />
+          <PARAM Name="DOUT.FLG.TOUT" Value="NULL" />
+          <PARAM Name="DOUT.FLG.REC" Value="NULL" />
+          <PARAM Name="DOUT.FLG.PULSE.LOCK" Value="NULL" />
+          <PARAM Name="DOUT.FLG.LOG.WORK" Value="NULL" />
+          <PARAM Name="DOUT.FLG.LOG.ENABLE" Value="NULL" />
+          <PARAM Name="DOUT.PWM.FLG.ON" Value="NULL" />
+          <PARAM Name="DOUT.PWM.FLG.ENABLE" Value="NULL" />
+          <PARAM Name="DOUT.PULSE.TIME" Value="NULL" />
+          <PARAM Name="DOUT.PWM.DUTY" Value="NULL" />
+          <PARAM Name="DOUT.WORK.ENABLE" Value="NULL" />
+          <PARAM Name="DOUT.WORK.TOUT" Value="NULL" />
+          <PARAM Name="COMMAND.FLGS.0" Value="-1" />
+          <PARAM Name="COMMAND.ALIAS.0" Value="NULL" />
+          <PARAM Name="COMMAND.FLGS.1" Value="-1" />
+          <PARAM Name="COMMAND.ALIAS.1" Value="NULL" />
+          <PARAM Name="COMMAND.FLGS.2" Value="-1" />
+          <PARAM Name="COMMAND.ALIAS.2" Value="NULL" />
+          <PARAM Name="COMMAND.FLGS.3" Value="-1" />
+          <PARAM Name="COMMAND.ALIAS.3" Value="NULL" />
+          <PARAM Name="COMMAND.FLGS.4" Value="-1" />
+          <PARAM Name="COMMAND.ALIAS.4" Value="NULL" />
+          <PARAM Name="COMMAND.FLGS.5" Value="-1" />
+          <PARAM Name="COMMAND.ALIAS.5" Value="NULL" />
+        </PARAMS>
+      </ITEM>
+      <ITEM Name="LOG" Label="LOG">
+        <PARAMS>
+          <PARAM Name="LOG.FLG.EVENT.LOG.SMS" Value="F" />
+          <PARAM Name="LOG.FLG.EVENT.LOG.EMAIL" Value="F" />
+          <PARAM Name="LOG.FLG.EVENT.LOG.POST" Value="T" />
+          <PARAM Name="LOG.FLG.EVENT.REPORT.FTP" Value="F" />
+          <PARAM Name="LOG.FLG.EVENT.REPORT.EMAIL" Value="F" />
+          <PARAM Name="LOG.FLG.EVENT.REPORT.SD" Value="F" />
+          <PARAM Name="LOG.FLG.DATA.LOG.SMS" Value="F" />
+          <PARAM Name="LOG.FLG.DATA.LOG.EMAIL" Value="F" />
+          <PARAM Name="LOG.FLG.DATA.LOG.POST" Value="T" />
+          <PARAM Name="LOG.FLG.DATA.LOG.ASYNC" Value="F" />
+          <PARAM Name="LOG.FLG.DATA.REPORT.TOT" Value="NULL" />
+          <PARAM Name="LOG.FLG.DATA.REPORT.STOP" Value="F" />
+          <PARAM Name="LOG.FLG.DATA.REPORT.ASYNC" Value="NULL" />
+          <PARAM Name="LOG.FLG.DATA.REPORT.SMS" Value="F" />
+          <PARAM Name="LOG.FLG.DATA.REPORT.FTP" Value="F" />
+          <PARAM Name="LOG.FLG.DATA.REPORT.EMAIL" Value="F" />
+          <PARAM Name="LOG.FLG.DATA.REPORT.SD" Value="F" />
+          <PARAM Name="LOG.FLG.LOG.SHUTDOWN" Value="NULL" />
+          <PARAM Name="LOG.FLG.REPORT.SHUTDOWN" Value="NULL" />
+          <PARAM Name="LOG.FLG.INFO.ENABLE" Value="T" />
+          <PARAM Name="LOG.FLG.DIAG.ENABLE" Value="T" />
+          <PARAM Name="LOG.FLG.EVENT.ENABLE" Value="T" />
+          <PARAM Name="LOG.FLG.DATA.ENABLE" Value="T" />
+          <PARAM Name="LOG.FLG.ENABLE" Value="T" />
+          <PARAM Name="LOG.EVENT.ROTATE.COUNTER" Value="NULL" />
+          <PARAM Name="LOG.DATA.ROTATE.COUNTER" Value="NULL" />
+          <PARAM Name="TLG.FLG.EVENT.DAY" Value="T" />
+          <PARAM Name="TLG.FLG.EVENT.WDAY0" Value="F" />
+          <PARAM Name="TLG.FLG.EVENT.WDAY1" Value="F" />
+          <PARAM Name="TLG.FLG.EVENT.WDAY2" Value="F" />
+          <PARAM Name="TLG.FLG.EVENT.WDAY3" Value="F" />
+          <PARAM Name="TLG.FLG.EVENT.WDAY4" Value="F" />
+          <PARAM Name="TLG.FLG.EVENT.WDAY5" Value="F" />
+          <PARAM Name="TLG.FLG.EVENT.WDAY6" Value="F" />
+          <PARAM Name="TLG.FLG.EVENT.MONTHLY" Value="F" />
+          <PARAM Name="TLG.FLG.EVENT.YEARLY" Value="F" />
+          <PARAM Name="TLG.FLG.EVENT.ENABLE" Value="T" />
+          <PARAM Name="TLG.FLG.DATA.DAY" Value="F" />
+          <PARAM Name="TLG.FLG.DATA.WDAY0" Value="F" />
+          <PARAM Name="TLG.FLG.DATA.WDAY1" Value="F" />
+          <PARAM Name="TLG.FLG.DATA.WDAY2" Value="F" />
+          <PARAM Name="TLG.FLG.DATA.WDAY3" Value="F" />
+          <PARAM Name="TLG.FLG.DATA.WDAY4" Value="F" />
+          <PARAM Name="TLG.FLG.DATA.WDAY5" Value="F" />
+          <PARAM Name="TLG.FLG.DATA.WDAY6" Value="F" />
+          <PARAM Name="TLG.FLG.DATA.MONTHLY" Value="F" />
+          <PARAM Name="TLG.FLG.DATA.YEARLY" Value="F" />
+          <PARAM Name="TLG.FLG.DATA.ENABLE" Value="T" />
+          <PARAM Name="TLG.DATA.OFFSET" Value="0" />
+          <PARAM Name="TLG.DATA.TRIGGER.TIME" Value="60" />
+          <PARAM Name="TLG.DATA.REPORT.TRIGGERS" Value="60" />
+          <PARAM Name="TLG.EVENT.OFFSET" Value="0" />
+          <PARAM Name="TLG.EVENT.REPORT.TIME" Value="86400" />
+          <PARAM Name="RUN.GROUP.0" Value="NULL" />
+          <PARAM Name="RUN.GROUP.1" Value="NULL" />
+          <PARAM Name="LOG.EVENT.GROUP" Value="NULL" />
+          <PARAM Name="LOG.DATA.GROUP" Value="NULL" />
+          <PARAM Name="LOG.REPORT.ACTION" Value="NULL" />
+          <PARAM Name="COMMAND.FLGS.0" Value="NULL" />
+          <PARAM Name="COMMAND.ALIAS.0" Value="NULL" />
+          <PARAM Name="COMMAND.FLGS.1" Value="NULL" />
+          <PARAM Name="COMMAND.ALIAS.1" Value="NULL" />
+          <PARAM Name="COMMAND.FLGS.2" Value="NULL" />
+          <PARAM Name="COMMAND.ALIAS.2" Value="NULL" />
+          <PARAM Name="COMMAND.FLGS.3" Value="NULL" />
+          <PARAM Name="COMMAND.ALIAS.3" Value="NULL" />
+          <PARAM Name="COMMAND.FLGS.4" Value="NULL" />
+          <PARAM Name="COMMAND.ALIAS.4" Value="NULL" />
+          <PARAM Name="COMMAND.FLGS.5" Value="NULL" />
+          <PARAM Name="COMMAND.ALIAS.5" Value="NULL" />
+          <PARAM Name="COMMAND.FLGS.6" Value="NULL" />
+          <PARAM Name="COMMAND.ALIAS.6" Value="NULL" />
+          <PARAM Name="COMMAND.FLGS.7" Value="NULL" />
+          <PARAM Name="COMMAND.ALIAS.7" Value="NULL" />
+          <PARAM Name="COMMAND.FLGS.8" Value="NULL" />
+          <PARAM Name="COMMAND.ALIAS.8" Value="NULL" />
+          <PARAM Name="COMMAND.FLGS.9" Value="NULL" />
+          <PARAM Name="COMMAND.ALIAS.9" Value="NULL" />
+        </PARAMS>
+      </ITEM>
+      <ITEM Name="APP" Label="APP">
+        <PARAMS>
+          <PARAM Name="APP.RING.ACTION.0" Value="NULL" />
+          <PARAM Name="APP.RING.ACTION.1" Value="NULL" />
+          <PARAM Name="APP.CSV.SEPARATOR" Value="0x3B" />
+          <PARAM Name="APP.DATE.SEPARATOR" Value="0x2F" />
+          <PARAM Name="APP.TIME.SEPARATOR" Value="0x3A" />
+          <PARAM Name="APP.DECIMAL.SEPARATOR" Value="0x2C" />
+          <PARAM Name="APP.FLG.NTFY.TIMESTAMP" Value="F" />
+          <PARAM Name="APP.FLG.NTFY.RESET" Value="F" />
+          <PARAM Name="DEBUG.FLAGS" Value="0x64224F00" />
+          <PARAM Name="COMMAND.FLGS.0" Value="-1" />
+          <PARAM Name="COMMAND.ALIAS.0" Value="NULL" />
+          <PARAM Name="COMMAND.FLGS.1" Value="-1" />
+          <PARAM Name="COMMAND.ALIAS.1" Value="NULL" />
+          <PARAM Name="COMMAND.FLGS.2" Value="-1" />
+          <PARAM Name="COMMAND.ALIAS.2" Value="NULL" />
+          <PARAM Name="COMMAND.FLGS.3" Value="-1" />
+          <PARAM Name="COMMAND.ALIAS.3" Value="NULL" />
+          <PARAM Name="COMMAND.FLGS.4" Value="-1" />
+          <PARAM Name="COMMAND.ALIAS.4" Value="NULL" />
+          <PARAM Name="COMMAND.FLGS.5" Value="-1" />
+          <PARAM Name="COMMAND.ALIAS.5" Value="NULL" />
+          <PARAM Name="COMMAND.FLGS.6" Value="-1" />
+          <PARAM Name="COMMAND.ALIAS.6" Value="NULL" />
+          <PARAM Name="COMMAND.FLGS.7" Value="-1" />
+          <PARAM Name="COMMAND.ALIAS.7" Value="NULL" />
+          <PARAM Name="COMMAND.FLGS.8" Value="-1" />
+          <PARAM Name="COMMAND.ALIAS.8" Value="NULL" />
+          <PARAM Name="COMMAND.FLGS.9" Value="-1" />
+          <PARAM Name="COMMAND.ALIAS.9" Value="NULL" />
+          <PARAM Name="COMMAND.FLGS.10" Value="-1" />
+          <PARAM Name="COMMAND.ALIAS.10" Value="NULL" />
+          <PARAM Name="COMMAND.FLGS.11" Value="-1" />
+          <PARAM Name="COMMAND.ALIAS.11" Value="NULL" />
+          <PARAM Name="COMMAND.FLGS.12" Value="-1" />
+          <PARAM Name="COMMAND.ALIAS.12" Value="NULL" />
+          <PARAM Name="COMMAND.CUSTOM.FLGS.0" Value="-1" />
+          <PARAM Name="COMMAND.CUSTOM.ALIAS.0" Value="NULL" />
+          <PARAM Name="APP.CUSTOM.NOTIFY.FLAGS.0" Value="0x00000000" />
+          <PARAM Name="COMMAND.CUSTOM.FLGS.1" Value="-1" />
+          <PARAM Name="COMMAND.CUSTOM.ALIAS.1" Value="NULL" />
+          <PARAM Name="APP.CUSTOM.NOTIFY.FLAGS.1" Value="0x00000000" />
+          <PARAM Name="COMMAND.CUSTOM.FLGS.2" Value="-1" />
+          <PARAM Name="COMMAND.CUSTOM.ALIAS.2" Value="NULL" />
+          <PARAM Name="APP.CUSTOM.NOTIFY.FLAGS.2" Value="0x00000000" />
+          <PARAM Name="COMMAND.CUSTOM.FLGS.3" Value="-1" />
+          <PARAM Name="COMMAND.CUSTOM.ALIAS.3" Value="NULL" />
+          <PARAM Name="APP.CUSTOM.NOTIFY.FLAGS.3" Value="0x00000000" />
+          <PARAM Name="COMMAND.STATE.FLGS.0" Value="NULL" />
+          <PARAM Name="COMMAND.STATE.ALIAS.0" Value="NULL" />
+          <PARAM Name="COMMAND.STATE.ACTION.0" Value="0x00000000" />
+          <PARAM Name="COMMAND.STATE.FLGS.1" Value="NULL" />
+          <PARAM Name="COMMAND.STATE.ALIAS.1" Value="NULL" />
+          <PARAM Name="COMMAND.STATE.ACTION.1" Value="0x00000000" />
+          <PARAM Name="COMMAND.STATE.FLGS.2" Value="NULL" />
+          <PARAM Name="COMMAND.STATE.ALIAS.2" Value="NULL" />
+          <PARAM Name="COMMAND.STATE.ACTION.2" Value="0x00000000" />
+          <PARAM Name="COMMAND.STATE.FLGS.3" Value="NULL" />
+          <PARAM Name="COMMAND.STATE.ALIAS.3" Value="NULL" />
+          <PARAM Name="COMMAND.STATE.ACTION.3" Value="0x00000000" />
+        </PARAMS>
+      </ITEM>
+      <ITEM Name="SYS" Label="SYS">
+        <PARAMS>
+          <PARAM Name="INFO" Value="NULL" />
+          <PARAM Name="IO.FLG.NPN" Value="NULL" />
+          <PARAM Name="IO.FLG.DELTA.SLOT" Value="NULL" />
+          <PARAM Name="IO.FLG.DELTA.CYCLE" Value="NULL" />
+          <PARAM Name="IO.FLG.CALIBRATE.ADC0" Value="NULL" />
+          <PARAM Name="IO.FLG.CALIBRATE.ADC1" Value="NULL" />
+          <PARAM Name="IO.FLG.BLACKOUT.SHUTDOWN" Value="NULL" />
+          <PARAM Name="IO.FLG.LOG.DIN1" Value="T" />
+          <PARAM Name="IO.FLG.LOG.DIN2" Value="T" />
+          <PARAM Name="IO.FLG.LOG.DIN3" Value="T" />
+          <PARAM Name="IO.FLG.LOG.DIN4" Value="T" />
+          <PARAM Name="IO.FLG.LOG.DOUT1" Value="T" />
+          <PARAM Name="IO.FLG.LOG.DOUT2" Value="T" />
+          <PARAM Name="IO.FLG.LOG.VBAT" Value="T" />
+          <PARAM Name="IO.FLG.LOG.POW" Value="T" />
+          <PARAM Name="SYS.CONDITION" Value="NULL" />
+          <PARAM Name="IO.POW.ALARM.DELAY" Value="NULL" />
+          <PARAM Name="IO.POW.OK.DELAY" Value="NULL" />
+        </PARAMS>
+      </ITEM>
+    </ITEMS>
+  </SHELF>
+  <GRAPH>
+    <NODES>
+      <NODE Name="BLK.CND.1" Label="EV14" InfoLine1="DIN1" InfoLine2="ALM" Element="CND.DIN1.ALM" GridX="14" GridY="9">
+        <PARAMS>
+          <PARAM Name="INFO" Value="NULL" />
+          <PARAM Name="FLAGS" Value="NULL" />
+        </PARAMS>
+      </NODE>
+      <NODE Name="BLK.EVENT.1" Label="SEC1" Option="1" InfoLine1="" InfoLine2="" Element="SEC" GridX="35" GridY="8">
+        <PARAMS>
+          <PARAM Name="INFO1" Value="" />
+          <PARAM Name="INFO2" Value="" />
+          <PARAM Name="IN.PADS" Value="1" />
+          <PARAM Name="OUT.PADS" Value="2" />
+          <PARAM Name="EV.CTRL.FLG.0.ENABLE" Value="T" />
+          <PARAM Name="EV.CTRL.FLG.1.ENABLE" Value="F" />
+          <PARAM Name="EV.CTRL.FLG.2.ENABLE" Value="F" />
+          <PARAM Name="EV.CTRL.FLG.3.ENABLE" Value="F" />
+          <PARAM Name="EV.CTRL.FLG.ENABLE" Value="T" />
+          <PARAM Name="RUN.GROUP" Value="NULL" />
+          <PARAM Name="EV.CTRL.FLG.ACK" Value="F" />
+          <PARAM Name="EV.CTRL.EASY" Value="T" />
+          <PARAM Name="FLT" Value="0" />
+          <PARAM Name="FUN" Value="0" />
+          <PARAM Name="EV.CTRL.START.STATE" Value="1" />
+          <PARAM Name="EV.CTRL.TIME" Value="0" />
+          <PARAM Name="EV.CTRL.NTFY" Value="16" />
+          <PARAM Name="EV.CTRL.FLG.INFO" Value="F" />
+          <PARAM Name="EV.CTRL.FLG.SD" Value="F" />
+          <PARAM Name="EV.CTRL.FLG.REC" Value="F" />
+          <PARAM Name="COMMAND.FLGS.0" Value="-1" />
+          <PARAM Name="COMMAND.ALIAS.0" Value="NULL" />
+          <PARAM Name="COMMAND.ACTION.0" Value="0x07000000" />
+          <PARAM Name="COMMAND.FLGS.1" Value="-1" />
+          <PARAM Name="COMMAND.ALIAS.1" Value="NULL" />
+          <PARAM Name="COMMAND.ACTION.1" Value="0x07010001" />
+          <PARAM Name="COMMAND.FLGS.2" Value="-1" />
+          <PARAM Name="COMMAND.ALIAS.2" Value="NULL" />
+          <PARAM Name="COMMAND.ACTION.2" Value="0x07010000" />
+          <PARAM Name="EV.OP.0.OUT.PAD" Value="1" />
+          <PARAM Name="EV.OP.0.FLT" Value="0" />
+          <PARAM Name="EV.OP.0.FUN" Value="0" />
+          <PARAM Name="EV.OP.0.FLG.ACK" Value="F" />
+          <PARAM Name="EV.OP.0.FLG.MAN" Value="NULL" />
+          <PARAM Name="EV.OP.0.FLG.TMR" Value="NULL" />
+          <PARAM Name="EV.OP.0.FLG.AUTO" Value="NULL" />
+          <PARAM Name="EV.OP.0.FLG.STATE" Value="NULL" />
+          <PARAM Name="EV.OP.0.FLG.NOTIFY" Value="T" />
+          <PARAM Name="EV.OP.0.FLG.ACTION" Value="F" />
+          <PARAM Name="EV.OP.0.FLG.ENABLE" Value="T" />
+          <PARAM Name="EV.OP.0.MSK" Value="0x01" />
+          <PARAM Name="EV.OP.0.EQU" Value="0x01" />
+          <PARAM Name="EV.OP.1.OUT.PAD" Value="0" />
+          <PARAM Name="EV.OP.1.FLT" Value="0" />
+          <PARAM Name="EV.OP.1.FUN" Value="1" />
+          <PARAM Name="EV.OP.1.FLG.ACK" Value="F" />
+          <PARAM Name="EV.OP.1.FLG.MAN" Value="NULL" />
+          <PARAM Name="EV.OP.1.FLG.TMR" Value="NULL" />
+          <PARAM Name="EV.OP.1.FLG.AUTO" Value="NULL" />
+          <PARAM Name="EV.OP.1.FLG.STATE" Value="NULL" />
+          <PARAM Name="EV.OP.1.FLG.NOTIFY" Value="T" />
+          <PARAM Name="EV.OP.1.FLG.ACTION" Value="F" />
+          <PARAM Name="EV.OP.1.FLG.ENABLE" Value="T" />
+          <PARAM Name="EV.OP.1.MSK" Value="0x01" />
+          <PARAM Name="EV.OP.1.EQU" Value="0x01" />
+          <PARAM Name="EV.OP.2.OUT.PAD" Value="-1" />
+          <PARAM Name="EV.OP.2.FLT" Value="0" />
+          <PARAM Name="EV.OP.2.FUN" Value="0" />
+          <PARAM Name="EV.OP.2.FLG.ACK" Value="F" />
+          <PARAM Name="EV.OP.2.FLG.MAN" Value="F" />
+          <PARAM Name="EV.OP.2.FLG.TMR" Value="F" />
+          <PARAM Name="EV.OP.2.FLG.AUTO" Value="F" />
+          <PARAM Name="EV.OP.2.FLG.STATE" Value="NULL" />
+          <PARAM Name="EV.OP.2.FLG.NOTIFY" Value="NULL" />
+          <PARAM Name="EV.OP.2.FLG.ACTION" Value="NULL" />
+          <PARAM Name="EV.OP.2.FLG.ENABLE" Value="F" />
+          <PARAM Name="EV.OP.2.MSK" Value="0x00" />
+          <PARAM Name="EV.OP.2.EQU" Value="0x00" />
+          <PARAM Name="EV.OP.3.OUT.PAD" Value="-1" />
+          <PARAM Name="EV.OP.3.FLT" Value="0" />
+          <PARAM Name="EV.OP.3.FUN" Value="0" />
+          <PARAM Name="EV.OP.3.FLG.ACK" Value="F" />
+          <PARAM Name="EV.OP.3.FLG.MAN" Value="F" />
+          <PARAM Name="EV.OP.3.FLG.TMR" Value="F" />
+          <PARAM Name="EV.OP.3.FLG.AUTO" Value="F" />
+          <PARAM Name="EV.OP.3.FLG.STATE" Value="NULL" />
+          <PARAM Name="EV.OP.3.FLG.NOTIFY" Value="NULL" />
+          <PARAM Name="EV.OP.3.FLG.ACTION" Value="NULL" />
+          <PARAM Name="EV.OP.3.FLG.ENABLE" Value="F" />
+          <PARAM Name="EV.OP.3.MSK" Value="0x00" />
+          <PARAM Name="EV.OP.3.EQU" Value="0x00" />
+          <PARAM Name="EV.OP.4.OUT.PAD" Value="-1" />
+          <PARAM Name="EV.OP.4.FLT" Value="0" />
+          <PARAM Name="EV.OP.4.FUN" Value="0" />
+          <PARAM Name="EV.OP.4.FLG.ACK" Value="F" />
+          <PARAM Name="EV.OP.4.FLG.MAN" Value="F" />
+          <PARAM Name="EV.OP.4.FLG.TMR" Value="F" />
+          <PARAM Name="EV.OP.4.FLG.AUTO" Value="F" />
+          <PARAM Name="EV.OP.4.FLG.STATE" Value="NULL" />
+          <PARAM Name="EV.OP.4.FLG.NOTIFY" Value="NULL" />
+          <PARAM Name="EV.OP.4.FLG.ACTION" Value="NULL" />
+          <PARAM Name="EV.OP.4.FLG.ENABLE" Value="F" />
+          <PARAM Name="EV.OP.4.MSK" Value="0x00" />
+          <PARAM Name="EV.OP.4.EQU" Value="0x00" />
+          <PARAM Name="EV.OP.5.OUT.PAD" Value="-1" />
+          <PARAM Name="EV.OP.5.FLT" Value="0" />
+          <PARAM Name="EV.OP.5.FUN" Value="0" />
+          <PARAM Name="EV.OP.5.FLG.ACK" Value="F" />
+          <PARAM Name="EV.OP.5.FLG.MAN" Value="F" />
+          <PARAM Name="EV.OP.5.FLG.TMR" Value="F" />
+          <PARAM Name="EV.OP.5.FLG.AUTO" Value="F" />
+          <PARAM Name="EV.OP.5.FLG.STATE" Value="NULL" />
+          <PARAM Name="EV.OP.5.FLG.NOTIFY" Value="NULL" />
+          <PARAM Name="EV.OP.5.FLG.ACTION" Value="NULL" />
+          <PARAM Name="EV.OP.5.FLG.ENABLE" Value="F" />
+          <PARAM Name="EV.OP.5.MSK" Value="0x00" />
+          <PARAM Name="EV.OP.5.EQU" Value="0x00" />
+        </PARAMS>
+      </NODE>
+      <NODE Name="BLK.MSG.1" Label="MSG0" Element="MSG.0" GridX="53" GridY="7">
+        <PARAMS />
+      </NODE>
+      <NODE Name="BLK.MSG.2" Label="MSG1" Element="MSG.1" GridX="53" GridY="16">
+        <PARAMS />
+      </NODE>
+    </NODES>
+    <LINKS>
+      <LINK Name="BLK.CND.1.OUT.0.BLK.EVENT.1.IN.0" Out="BLK.CND.1.OUT.0" In="BLK.EVENT.1.IN.0" Label="EV14_O1-SEC1_I1" />
+      <LINK Name="BLK.EVENT.1.OUT.0.BLK.MSG.1.IN.0" Out="BLK.EVENT.1.OUT.0" In="BLK.MSG.1.IN.0" Label="SEC1_O1-MSG0_I1" />
+      <LINK Name="BLK.EVENT.1.OUT.1.BLK.MSG.2.IN.0" Out="BLK.EVENT.1.OUT.1" In="BLK.MSG.2.IN.0" Label="SEC1_O2-MSG1_I1" />
+    </LINKS>
+  </GRAPH>
+  <XREFS>
+    <XREF Name="PRO.USR.4.BLK.EVENT.1" RefId="XREF_PROFILE" Source="PRO.USR.4" Destination="BLK.EVENT.1" Label="[XREF_PROFILE](Operator)-(SEC1)" />
+  </XREFS>
+</SEAL>
