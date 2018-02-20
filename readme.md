@@ -1,3 +1,5 @@
+![Seneca Logo](seneca_web.png "SENECA S.r.l.")
+
 About
 ====
 This is a sample server software that serve as an example on how to communicate with SENECA hardware device. The compatible devices are Z-GPRS3, Z-Logger3 and Z-UMTS via modem ot ethernet cable.
